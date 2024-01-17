@@ -12,27 +12,27 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      nombre: {
+      forename: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      apellido: {
+      surname: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      descripcion: {
+      description: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      imagen: {
+      image: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      nacionalidad: {
+      nationality: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      fechaNacimiento: {
+      dob: {
         type: DataTypes.DATE,
         allowNull: false,
       },
