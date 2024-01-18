@@ -5,10 +5,11 @@ module.exports = (sequelize) => {
     "Team",
     {
       id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
+        unique: true,
+        autoIncrement: true,
       },
       nombre: {
         type: DataTypes.STRING,

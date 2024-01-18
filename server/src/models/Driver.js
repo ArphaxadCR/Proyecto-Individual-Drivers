@@ -32,6 +32,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      teams: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        allowNull: false,
+      },
       dob: {
         type: DataTypes.DATE,
         allowNull: false,
