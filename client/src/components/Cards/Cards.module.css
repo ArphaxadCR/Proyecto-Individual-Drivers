@@ -1,0 +1,10 @@
+body {
+  background: #232526;
+}
+
+.cards {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
