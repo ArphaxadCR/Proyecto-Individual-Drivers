@@ -1,8 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
 .card {
   width: 300px;
-  height: 300px;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
+  height: 350px;
+  background: rgb(255, 0, 179);
+  background: linear-gradient(
+    137deg,
+    rgb(243, 33, 33) 0%,
+    rgb(255, 255, 255) 100%
+  );
+  transition: 0.3s ease;
+  border-radius: 30px;
+  filter: drop-shadow(0px 0px 10px rgb(243, 33, 33));
+  color: white;
   text-align: center;
+  position: relative;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Kanit", sans-serif;
+  padding-left: 10px;
+  padding-right: 10px;
+  animation: fadein 1s;
+
+  /* view-timeline-name: --card;
+  view-timeline-axis: block;
+  animation-timeline: --card;
+  animation-name: show;
+  animation-range: entry 25% cover 50%;
+  animation-fill-mode: both; */
 }
+
+.card::after {
+  content: "";
+  background-color: #181818;
+  position: absolute;
+  z-index: -1;
+  transition: 0.3s ease;
+  height: 98%;
+  width: 98%;
+  top: 1%;
+  left: 1%;
+  border-radius: 28px;
+}
+
+.card:hover {
+  filter: drop-shadow(0px 0px 10px white);
+}
+
+.name {
+  text-transform: uppercase;
+}
+
+.img {
+  width: 100px;
+  border-radius: 10px;
+}
+
+.paragraph {
+  max-width: 300px;
+  overflow: hidden;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* @keyframes show {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+} */
