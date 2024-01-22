@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+.navbar {
+  background-color: #ececec;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Kanit", sans-serif;
+  box-shadow: 0px 2px 5px 0px rgb(255, 255, 255);
+}
+
+.buttonContainer {
+  /* background-color: aqua; */
+  width: 500px;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.linkButton {
+  text-decoration: none;
+  background-color: crimson;
+  width: 80px;
+  height: 45px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
+  transition: all 0.3s ease;
+}
+
+.linkButton:hover {
+  background-color: rgb(194, 18, 53);
+  cursor: pointer;
+}

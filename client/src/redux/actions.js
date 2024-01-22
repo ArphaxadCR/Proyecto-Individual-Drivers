@@ -13,3 +13,17 @@ export const getDrivers = () => {
     }
   };
 };
+
+export const getDriver = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/drivers/${id}`);
+      dispatch({
+        type: "GET_DRIVER",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
