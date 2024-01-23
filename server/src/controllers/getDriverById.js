@@ -9,7 +9,7 @@ async function getDriverById(req, res) {
     const regexPatternBD =
       /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-    if (regexPatternAPI.test(id)) {
+    if (!regexPatternBD.test(id)) {
       const apiResponse = await axios.get(
         `http://localhost:5000/drivers/${id}`
       );

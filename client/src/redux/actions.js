@@ -9,7 +9,7 @@ export const getDrivers = () => {
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      alert(error.message);
     }
   };
 };
@@ -23,7 +23,23 @@ export const getDriver = (id) => {
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      alert(error.message);
+    }
+  };
+};
+
+export const getDriverByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/driversName?name=${name}`
+      );
+      dispatch({
+        type: "GET_DRIVER_NAME",
+        payload: response.data,
+      });
+    } catch (error) {
+      alert(error.request?.response);
     }
   };
 };

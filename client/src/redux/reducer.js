@@ -9,13 +9,23 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         drivers: action.payload,
+        driver: {},
       };
 
     case "GET_DRIVER":
       return {
         ...state,
         driver: action.payload,
+        drivers: [],
       };
+
+    case "GET_DRIVER_NAME":
+      return {
+        ...state,
+        drivers: action.payload,
+        driver: {},
+      };
+
     default:
       return state;
   }

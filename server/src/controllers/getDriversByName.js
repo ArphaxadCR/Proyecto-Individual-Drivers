@@ -30,7 +30,7 @@ async function getDriversByName(req, res) {
       res.status(200).json(finalResponse);
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send("Hubo un error");
   }
 }
 

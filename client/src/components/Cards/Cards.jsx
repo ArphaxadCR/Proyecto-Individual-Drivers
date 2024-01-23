@@ -9,13 +9,14 @@ import { useEffect, useState } from "react";
 function Cards() {
   const dispatch = useDispatch();
   const drivers = useSelector((state) => state.drivers);
+  const driver = useSelector((state) => state.driver);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
   useEffect(() => {
     dispatch(getDrivers());
-  }, [dispatch]);
+  }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -24,9 +25,16 @@ function Cards() {
   return (
     <div className={style.mainContainer}>
       <div className={style.cards}>
-        {currentDrivers.map((driver) => (
-          <Card key={driver.id} driver={driver} />
-        ))}
+        {
+          /*Aquí es donde vamos a tener que hacer el cambio*/
+          driver.id ? (
+            <Card key={driver.id} driver={driver} />
+          ) : (
+            currentDrivers.map((driver) => (
+              <Card key={driver.id} driver={driver} />
+            ))
+          )
+        }
       </div>
 
       <div className={style.paginationControls}>
