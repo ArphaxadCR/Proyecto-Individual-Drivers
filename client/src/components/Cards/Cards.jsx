@@ -25,6 +25,27 @@ function Cards() {
 
   return (
     <div className={style.mainContainer}>
+      <div className={style.orderAndFilterControllers}>
+        <select name="filterDBAPI" id="filterDBAPI">
+          <option value="All">Todos los Drivers</option>
+          <option value="API">Origen API</option>
+          <option value="DB">Origen DB</option>
+        </select>
+        <select name="filterTeams" id="filterTeams">
+          <option value="All">Todos los Teams</option>
+          <option value="Teams">Teams xd</option>
+        </select>
+        <select name="orderNacimiento" id="orderNacimiento">
+          <option value="All">Ordenar por fecha de nacimiento</option>
+          <option value="ASC">Ascendente</option>
+          <option value="DESC">Descendente</option>
+        </select>
+        <select name="orderAlfabetico" id="orderAlfabetico">
+          <option value="All">Ordenar por nombre</option>
+          <option value="ASC">Ascendente</option>
+          <option value="DESC">Descendente</option>
+        </select>
+      </div>
       <div className={style.cards}>
         {
           /*Aquí es donde vamos a tener que hacer el cambio*/
