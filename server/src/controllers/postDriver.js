@@ -6,16 +6,6 @@ async function postDriver(req, res) {
     const { forename, surname, description, image, nationality, teams, dob } =
       req.body;
 
-    console.log("Valores para la búsqueda:", {
-      forename,
-      surname,
-      description,
-      image,
-      nationality,
-      teams,
-      dob,
-    });
-
     const existingDriver = await Driver.findOne({
       where: {
         forename,

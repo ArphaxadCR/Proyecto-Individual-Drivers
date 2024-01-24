@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import style from "./Cards.module.css";
 import Card from "../Card/Card";
 
