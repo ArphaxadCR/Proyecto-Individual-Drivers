@@ -43,3 +43,30 @@ export const getDriverByName = (name) => {
     }
   };
 };
+
+export const filterBDAPI = (value) => {
+  return (dispatch) => {
+    dispatch({
+      type: "FILTER_DB_API",
+      payload: value,
+    });
+  };
+};
+
+export const orderNombre = (value) => {
+  return (dispatch) => {
+    dispatch({
+      type: "ORDER_NOMBRE",
+      payload: value,
+    });
+  };
+};
+
+export const orderNacimiento = (value) => {
+  return (dispatch) => {
+    dispatch({
+      type: "ORDER_NACIMIENTO",
+      payload: value,
+    });
+  };
+};

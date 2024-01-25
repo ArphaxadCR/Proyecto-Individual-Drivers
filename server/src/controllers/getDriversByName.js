@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Driver } = require("../db");
+const { Driver, Team } = require("../db");
 const { Op } = require("sequelize");
 
 async function getDriversByName(req, res) {
@@ -19,6 +19,15 @@ async function getDriversByName(req, res) {
             [Op.like]: `%${formattedName}%`,
           },
         },
+        include: [
+          {
+            model: Team,
+            attributes: ["id", "nombre"],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
       }),
     ]);
 

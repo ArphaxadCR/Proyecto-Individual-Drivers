@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Driver } = require("../db");
+const { Driver, Team } = require("../db");
 
 async function getDrivers(req, res) {
   try {
@@ -7,7 +7,17 @@ async function getDrivers(req, res) {
 
     const [response, responseDB] = await Promise.all([
       axios.get("http://localhost:5000/drivers"),
-      Driver.findAll(),
+      Driver.findAll({
+        include: [
+          {
+            model: Team,
+            attributes: ["id", "nombre"],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
+      }),
     ]);
 
     drivers = [...response.data, ...responseDB];

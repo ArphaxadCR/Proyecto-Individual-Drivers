@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Driver } = require("../db");
+const { Driver, Team } = require("../db");
 
 async function getDriverById(req, res) {
   try {
@@ -16,16 +16,22 @@ async function getDriverById(req, res) {
 
       res.status(200).json(apiResponse.data);
     } else if (regexPatternBD.test(id)) {
-      const bdResponse = await Driver.findOne({
-        where: {
-          id: id,
-        },
+      const bdResponse = await Driver.findByPk(id, {
+        include: [
+          {
+            model: Team,
+            attributes: ["id", "nombre"],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
       });
 
       if (bdResponse === null) {
         res.status(404).send("Driver not found");
       } else {
-        res.status(200).json(bdResponse);
+        res.status(200).json(bdResponse.toJSON());
       }
     } else {
       res.status(404).send("Driver not found");

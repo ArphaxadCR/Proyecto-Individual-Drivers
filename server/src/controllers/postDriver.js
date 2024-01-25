@@ -1,40 +1,38 @@
 const axios = require("axios");
-const { Driver } = require("../db");
+const { Driver, Team } = require("../db");
 
 async function postDriver(req, res) {
   try {
-    const { forename, surname, description, image, nationality, teams, dob } =
-      req.body;
+    const {
+      forename,
+      surname,
+      description,
+      image,
+      nationality,
+      teams,
+      dob,
+      teamIds,
+    } = req.body;
 
-    const existingDriver = await Driver.findOne({
+    const driver = await Driver.create({
+      forename,
+      surname,
+      description,
+      image,
+      nationality,
+      teams,
+      dob,
+    });
+
+    const selectedTeams = await Team.findAll({
       where: {
-        forename,
-        surname,
-        description,
-        image,
-        nationality,
-        teams,
-        dob,
+        id: teamIds,
       },
     });
 
-    console.log(existingDriver);
+    await driver.addTeams(selectedTeams);
 
-    if (existingDriver) {
-      res.status(400).json({ error: "El conductor ya existe." });
-    } else {
-      const newDriver = await Driver.create({
-        forename,
-        surname,
-        description,
-        image,
-        nationality,
-        teams,
-        dob,
-      });
-
-      res.send("Conductor creado exitosamente.");
-    }
+    res.send("Conductor creado exitosamente.");
   } catch (error) {
     res.status(500).send(error);
   }

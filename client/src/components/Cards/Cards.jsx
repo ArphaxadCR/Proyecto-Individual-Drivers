@@ -2,7 +2,12 @@
 import style from "./Cards.module.css";
 import Card from "../Card/Card";
 
-import { getDrivers } from "../../redux/actions";
+import {
+  getDrivers,
+  filterBDAPI,
+  orderNombre,
+  orderNacimiento,
+} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
@@ -12,6 +17,7 @@ function Cards() {
   const drivers = useSelector((state) => state.drivers);
   const driver = useSelector((state) => state.driver);
 
+  const [aux, setAux] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
@@ -23,10 +29,28 @@ function Cards() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentDrivers = drivers.slice(indexOfFirstItem, indexOfLastItem);
 
+  function handleFilterBDAPI(e) {
+    dispatch(filterBDAPI(e.target.value));
+  }
+
+  function orderName(e) {
+    dispatch(orderNombre(e.target.value));
+    setAux(!aux);
+  }
+
+  function orderDob(e) {
+    dispatch(orderNacimiento(e.target.value));
+    setAux(!aux);
+  }
+
   return (
     <div className={style.mainContainer}>
       <div className={style.orderAndFilterControllers}>
-        <select name="filterDBAPI" id="filterDBAPI">
+        <select
+          name="filterDBAPI"
+          id="filterDBAPI"
+          onChange={handleFilterBDAPI}
+        >
           <option value="All">Todos los Drivers</option>
           <option value="API">Origen API</option>
           <option value="DB">Origen DB</option>
@@ -35,12 +59,16 @@ function Cards() {
           <option value="All">Todos los Teams</option>
           <option value="Teams">Teams xd</option>
         </select>
-        <select name="orderNacimiento" id="orderNacimiento">
+        <select name="orderNacimiento" id="orderNacimiento" onChange={orderDob}>
           <option value="All">Ordenar por fecha de nacimiento</option>
           <option value="ASC">Ascendente</option>
           <option value="DESC">Descendente</option>
         </select>
-        <select name="orderAlfabetico" id="orderAlfabetico">
+        <select
+          name="orderAlfabetico"
+          id="orderAlfabetico"
+          onChange={orderName}
+        >
           <option value="All">Ordenar por nombre</option>
           <option value="ASC">Ascendente</option>
           <option value="DESC">Descendente</option>
