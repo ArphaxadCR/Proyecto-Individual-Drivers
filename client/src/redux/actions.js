@@ -70,3 +70,35 @@ export const orderNacimiento = (value) => {
     });
   };
 };
+
+export const getTeams = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:3001/teams");
+      dispatch({
+        type: "GET_TEAMS",
+        payload: response.data,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+};
+
+export const postDriver = (driver) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/drivers",
+        driver
+      );
+      dispatch({
+        type: "POST_DRIVER",
+        payload: response.data,
+      });
+      alert(response.data);
+    } catch (error) {
+      alert(error.request?.response);
+    }
+  };
+};

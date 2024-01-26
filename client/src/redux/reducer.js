@@ -3,6 +3,7 @@ let initialState = {
   allDrivers: [],
   drivers: [],
   driver: {},
+  teams: [],
 };
 
 const uuidRegex =
@@ -90,6 +91,17 @@ export default function reducer(state = initialState, action) {
         ...state,
         drivers: sortedNacimiento,
         driver: {},
+      };
+
+    case "GET_TEAMS":
+      return {
+        ...state,
+        teams: action.payload,
+      };
+
+    case "POST_DRIVER":
+      return {
+        ...state,
       };
 
     default:

@@ -3,16 +3,8 @@ const { Driver, Team } = require("../db");
 
 async function postDriver(req, res) {
   try {
-    const {
-      forename,
-      surname,
-      description,
-      image,
-      nationality,
-      teams,
-      dob,
-      teamIds,
-    } = req.body;
+    const { forename, surname, description, image, nationality, dob, teamIds } =
+      req.body;
 
     const driver = await Driver.create({
       forename,
@@ -20,7 +12,6 @@ async function postDriver(req, res) {
       description,
       image,
       nationality,
-      teams,
       dob,
     });
 

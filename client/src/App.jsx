@@ -13,10 +13,10 @@ function App() {
 
   return (
     <>
-      {location.pathname === "/" && <LandingPage />}
       {location.pathname !== "/" && <NavBar />}
 
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Cards />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/form" element={<Form />} />

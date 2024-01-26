@@ -65,10 +65,28 @@
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin: 10px;
 }
 
 .button:hover {
   background: rgb(168, 15, 46);
+}
+
+.cheboxTeams {
+  color: black;
+  width: 70%;
+  height: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow-y: scroll;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.labelCheck {
+  margin: 5px;
 }
 
 @keyframes fadein {
