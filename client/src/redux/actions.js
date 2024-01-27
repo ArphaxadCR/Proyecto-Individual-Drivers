@@ -53,6 +53,15 @@ export const filterBDAPI = (value) => {
   };
 };
 
+export const filterTeam = (value) => {
+  return (dispatch) => {
+    dispatch({
+      type: "FILTER_TEAM",
+      payload: value,
+    });
+  };
+};
+
 export const orderNombre = (value) => {
   return (dispatch) => {
     dispatch({

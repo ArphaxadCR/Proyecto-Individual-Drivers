@@ -55,6 +55,25 @@ export default function reducer(state = initialState, action) {
         driver: {},
       };
 
+    case "FILTER_TEAM":
+      let filteredTeam;
+
+      if (action.payload === "All") {
+        filteredTeam = state.allDrivers;
+      }
+
+      if (action.payload !== "All") {
+        filteredTeam = state.allDrivers.filter((driver) =>
+          driver.teams?.includes(action.payload)
+        );
+      }
+
+      return {
+        ...state,
+        drivers: filteredTeam,
+        driver: {},
+      };
+
     case "ORDER_NOMBRE":
       let sortedDrivers;
 

@@ -5,8 +5,10 @@ import Card from "../Card/Card";
 import {
   getDrivers,
   filterBDAPI,
+  filterTeam,
   orderNombre,
   orderNacimiento,
+  getTeams,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,6 +18,7 @@ function Cards() {
   const dispatch = useDispatch();
   const drivers = useSelector((state) => state.drivers);
   const driver = useSelector((state) => state.driver);
+  const teams = useSelector((state) => state.teams);
 
   const [aux, setAux] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +26,7 @@ function Cards() {
 
   useEffect(() => {
     dispatch(getDrivers());
+    dispatch(getTeams());
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -31,6 +35,10 @@ function Cards() {
 
   function handleFilterBDAPI(e) {
     dispatch(filterBDAPI(e.target.value));
+  }
+
+  function handleFilterTeam(e) {
+    dispatch(filterTeam(e.target.value));
   }
 
   function orderName(e) {
@@ -55,9 +63,13 @@ function Cards() {
           <option value="API">Origen API</option>
           <option value="DB">Origen DB</option>
         </select>
-        <select name="filterTeams" id="filterTeams">
+        <select name="filterTeams" id="filterTeams" onChange={handleFilterTeam}>
           <option value="All">Todos los Teams</option>
-          <option value="Teams">Teams xd</option>
+          {teams.map((team) => (
+            <option key={team.id} value={team.nombre}>
+              {team.nombre}
+            </option>
+          ))}
         </select>
         <select name="orderNacimiento" id="orderNacimiento" onChange={orderDob}>
           <option value="All">Ordenar por fecha de nacimiento</option>
