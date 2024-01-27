@@ -36,7 +36,7 @@ function Card(props) {
             />
           </Link>
           <h2 className={style.name}>{props.driver.forename}</h2>
-          <h3>{props.driver.surname}</h3>
+          <p>{props.driver.Teams?.map((team) => team.nombre).join(", ")}</p>
         </>
       )}
     </div>

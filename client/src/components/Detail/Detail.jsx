@@ -86,6 +86,10 @@ function Detail() {
             <span className={style.preText}>Fecha de nacimiento: </span>
             {driver.dob}
           </p>
+          <p>
+            <span className={style.preText}>Equipos: </span>
+            {driver.Teams?.map((team) => team.nombre).join(", ")}
+          </p>
         </div>
       )}
     </div>

@@ -4,6 +4,8 @@ import { getTeams, postDriver } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
+import validation from "./validation";
+
 function Form() {
   const dispatch = useDispatch();
 
@@ -23,6 +25,16 @@ function Form() {
     dob: "",
   });
 
+  const [errors, setErrors] = useState({
+    forename: "",
+    surname: "",
+    description: "",
+    image: "",
+    nationality: "",
+    teamIds: "",
+    dob: "",
+  });
+
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
 
@@ -34,11 +46,13 @@ function Form() {
         ...driverData,
         teamIds: updatedTeamsIds,
       });
+      setErrors(validation({ ...driverData, teamIds: updatedTeamsIds }));
     } else {
       setDriverData({
         ...driverData,
         [name]: value,
       });
+      setErrors(validation({ ...driverData, [name]: value }));
     }
   };
 
@@ -56,6 +70,8 @@ function Form() {
     });
   };
 
+  console.log(errors);
+
   return (
     <div className={style.mainContainer}>
       <h2 className={style.title}>¡Crea a tu Driver!</h2>
@@ -67,6 +83,7 @@ function Form() {
           name="forename"
           onChange={handleChange}
         />
+        {errors.forename && <p className={style.error}>{errors.forename}</p>}
 
         <label htmlFor="surname">Apellido</label>
         <input
@@ -75,6 +92,7 @@ function Form() {
           name="surname"
           onChange={handleChange}
         />
+        {errors.surname && <p className={style.error}>{errors.surname}</p>}
 
         <label htmlFor="description">Descripcion</label>
         <input
@@ -83,9 +101,13 @@ function Form() {
           name="description"
           onChange={handleChange}
         />
+        {errors.description && (
+          <p className={style.error}>{errors.description}</p>
+        )}
 
         <label htmlFor="image">Imagen</label>
         <input type="text" id="image" name="image" onChange={handleChange} />
+        {errors.image && <p className={style.error}>{errors.image}</p>}
 
         <label htmlFor="nationality">Nacionalidad</label>
         <input
@@ -94,9 +116,13 @@ function Form() {
           name="nationality"
           onChange={handleChange}
         />
+        {errors.nationality && (
+          <p className={style.error}>{errors.nationality}</p>
+        )}
 
         <label htmlFor="dob">Fecha de nacimiento</label>
         <input type="date" id="dob" name="dob" onChange={handleChange} />
+        {errors.dob && <p className={style.error}>{errors.dob}</p>}
 
         <label htmlFor="teamIds">Equipos</label>
         {/* <input type="text" id="equipoteamIds" name="equipoteamIds" /> */}
@@ -119,8 +145,13 @@ function Form() {
             );
           })}
         </div>
+        {errors.teamIds && <p className={style.error}>{errors.teamIds}</p>}
 
-        <button type="submit" className={style.button}>
+        <button
+          type="submit"
+          className={style.button}
+          disabled={Object.keys(errors).length > 0}
+        >
           Crear
         </button>
       </form>

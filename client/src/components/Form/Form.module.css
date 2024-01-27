@@ -89,6 +89,10 @@
   margin: 5px;
 }
 
+.error {
+  color: crimson;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
