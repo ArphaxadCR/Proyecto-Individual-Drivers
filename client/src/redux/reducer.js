@@ -63,9 +63,17 @@ export default function reducer(state = initialState, action) {
       }
 
       if (action.payload !== "All") {
-        filteredTeam = state.allDrivers.filter((driver) =>
-          driver.teams?.includes(action.payload)
-        );
+        filteredTeam = state.allDrivers.filter((driver) => {
+          if (uuidRegex.test(driver.id)) {
+            for (let i = 0; i < driver.Teams.length; i++) {
+              if (driver.Teams[i].nombre === action.payload) {
+                return true;
+              }
+            }
+          } else {
+            return driver.teams?.includes(action.payload);
+          }
+        });
       }
 
       return {
@@ -79,9 +87,17 @@ export default function reducer(state = initialState, action) {
 
       sortedDrivers = state.drivers.sort((a, b) => {
         if (action.payload === "ASC") {
-          return a.driverRef > b.driverRef ? 1 : -1;
+          if (uuidRegex.test(a.id) && uuidRegex.test(b.id)) {
+            return a.forename > b.forename ? 1 : -1;
+          } else {
+            return a.driverRef > b.driverRef ? 1 : -1;
+          }
         } else if (action.payload === "DESC") {
-          return a.driverRef < b.driverRef ? 1 : -1;
+          if (uuidRegex.test(a.id) && uuidRegex.test(b.id)) {
+            return a.forename < b.forename ? 1 : -1;
+          } else {
+            return a.driverRef < b.driverRef ? 1 : -1;
+          }
         } else {
           return 0;
         }
