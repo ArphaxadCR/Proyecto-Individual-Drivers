@@ -27,12 +27,9 @@ function Card(props) {
           <Link to={`/detail/${props.driver.id}`}>
             <img
               className={style.img}
-              src={
-                props.driver.image && props.driver.image.url
-                  ? props.driver.image.url
-                  : imagenPorDefecto
-              }
-              alt="Imag"
+              src={!props.driver.image ? imagenPorDefecto : props.driver.image}
+              alt="ImageBDD"
+              onError={(e) => (e.target.src = imagenPorDefecto)}
             />
           </Link>
           <h2 className={style.name}>{props.driver.forename}</h2>

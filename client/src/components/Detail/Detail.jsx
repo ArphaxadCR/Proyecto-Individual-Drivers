@@ -59,12 +59,9 @@ function Detail() {
         <div className={style.card}>
           <img
             className={style.image}
-            src={
-              driver.image && driver.image.url
-                ? driver.image.url
-                : imagenPorDefecto
-            }
-            alt="ImagenBDD"
+            src={!driver.image ? imagenPorDefecto : driver.image}
+            alt="ImageBDD"
+            onError={(e) => (e.target.src = imagenPorDefecto)}
           />
           <p>
             <span className={style.preText}>Nombre: </span>

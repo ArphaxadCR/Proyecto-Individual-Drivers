@@ -70,8 +70,6 @@ function Form() {
     });
   };
 
-  console.log(errors);
-
   return (
     <div className={style.mainContainer}>
       <h2 className={style.title}>¡Crea a tu Driver!</h2>
@@ -81,6 +79,7 @@ function Form() {
           type="text"
           id="forename"
           name="forename"
+          value={driverData.forename}
           onChange={handleChange}
         />
         {errors.forename && <p className={style.error}>{errors.forename}</p>}
@@ -90,6 +89,7 @@ function Form() {
           type="text"
           id="surname"
           name="surname"
+          value={driverData.surname}
           onChange={handleChange}
         />
         {errors.surname && <p className={style.error}>{errors.surname}</p>}
@@ -99,6 +99,7 @@ function Form() {
           type="text"
           id="description"
           name="description"
+          value={driverData.description}
           onChange={handleChange}
         />
         {errors.description && (
@@ -106,7 +107,13 @@ function Form() {
         )}
 
         <label htmlFor="image">Imagen</label>
-        <input type="text" id="image" name="image" onChange={handleChange} />
+        <input
+          type="text"
+          id="image"
+          name="image"
+          onChange={handleChange}
+          value={driverData.image}
+        />
         {errors.image && <p className={style.error}>{errors.image}</p>}
 
         <label htmlFor="nationality">Nacionalidad</label>
@@ -115,13 +122,20 @@ function Form() {
           id="nationality"
           name="nationality"
           onChange={handleChange}
+          value={driverData.nationality}
         />
         {errors.nationality && (
           <p className={style.error}>{errors.nationality}</p>
         )}
 
         <label htmlFor="dob">Fecha de nacimiento</label>
-        <input type="date" id="dob" name="dob" onChange={handleChange} />
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+          onChange={handleChange}
+          value={driverData.dob}
+        />
         {errors.dob && <p className={style.error}>{errors.dob}</p>}
 
         <label htmlFor="teamIds">Equipos</label>

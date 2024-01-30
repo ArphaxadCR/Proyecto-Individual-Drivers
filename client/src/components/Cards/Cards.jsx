@@ -87,16 +87,13 @@ function Cards() {
         </select>
       </div>
       <div className={style.cards}>
-        {
-          /*Aquí es donde vamos a tener que hacer el cambio*/
-          driver.id ? (
+        {driver.id ? (
+          <Card key={driver.id} driver={driver} />
+        ) : (
+          currentDrivers.map((driver) => (
             <Card key={driver.id} driver={driver} />
-          ) : (
-            currentDrivers.map((driver) => (
-              <Card key={driver.id} driver={driver} />
-            ))
-          )
-        }
+          ))
+        )}
       </div>
 
       <div className={style.paginationControls}>
