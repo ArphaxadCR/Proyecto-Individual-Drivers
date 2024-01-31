@@ -72,6 +72,11 @@
   background: rgb(168, 15, 46);
 }
 
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .cheboxTeams {
   color: black;
   width: 70%;

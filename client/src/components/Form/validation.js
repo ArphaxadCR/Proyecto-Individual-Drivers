@@ -12,55 +12,56 @@ export default function validation({
   // Debe tener contenido en el campo
 
   if (!forename.trim()) {
-    errors.forename = "Forename is required";
+    errors.forename = "El nombre es obligatorio";
   }
   if (!surname.trim()) {
-    errors.surname = "Surname is required";
+    errors.surname = "El apellido es obligatorio";
   }
   if (!description.trim()) {
-    errors.description = "Description is required";
+    errors.description = "La descripcion es obligatoria";
   }
   if (!image.trim()) {
-    errors.image = "Image is required";
+    errors.image = "La imagen es obligatoria";
   }
   if (!nationality.trim()) {
-    errors.nationality = "Nationality is required";
+    errors.nationality = "La nacionalidad es obligatoria";
   }
   if (!dob.trim()) {
-    errors.dob = "Date of birth is required";
+    errors.dob = "La fecha de nacimiento es obligatoria";
   }
   if (!teamIds.length) {
-    errors.teamIds = "At least one team is required";
+    errors.teamIds = "Al menos un equipo es obligatorio";
   }
 
   const nameRegex = /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñ]*[A-ZÁÉÍÓÚÜÑ]*$/;
 
   if (!nameRegex.test(forename)) {
     errors.forename =
-      "Forename must start with a capital letter and only contain letters";
+      "El nombre debe empezar con una letra mayúscula y solo contener letras";
   }
 
   if (!nameRegex.test(surname)) {
     errors.surname =
-      "Surname must start with a capital letter and only contain letters";
+      "El apellido debe empezar con una letra mayúscula y solo contener letras";
   }
 
   if (!nameRegex.test(nationality)) {
     errors.nationality =
-      "Nationality must start with a capital letter and only contain letters";
+      "La nacionalidad debe empezar con una letra mayúscula y solo contener letras";
   }
 
   const imageRegex =
     /\.(jpg|jpeg|png|gif|bmp|svg|webp|tiff|jfif|pjpeg|pjp|avif|heic|heif|avif)$/i;
 
   if (!imageRegex.test(image)) {
-    errors.image = "Image must be a valid image format (jpg, jpeg, png, etc)";
+    errors.image =
+      "La imagen debe tener un formato válido (jpg, jpeg, png, etc)";
   }
 
   const dobDate = new Date(dob);
 
   if (isNaN(dobDate.getTime())) {
-    errors.dob = "Date of birth must be a valid date";
+    errors.dob = "La fecha debe ser en un formato válido (YYYY-MM-DD)";
   } else {
     const today = new Date();
     const edad = today.getFullYear() - dobDate.getFullYear();
@@ -72,11 +73,11 @@ export default function validation({
       (actualMonth === birthMonth && today.getDate() < dobDate.getDate())
     ) {
       if (edad < 18) {
-        errors.dob = "Driver must be at least 18 years old";
+        errors.dob = "El driver debe ser mayor de edad";
       }
     } else {
       if (edad < 18) {
-        errors.dob = "Driver must be at least 18 years old";
+        errors.dob = "El driver debe ser mayor de edad";
       }
     }
   }
