@@ -45,6 +45,11 @@ body {
   background-color: rgb(163, 15, 45);
 }
 
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .orderAndFilterControllers {
   width: 70%;
   height: 80px;

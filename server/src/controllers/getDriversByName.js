@@ -34,12 +34,12 @@ async function getDriversByName(req, res) {
     const finalResponse = [...apiResponse.data, ...bdResponse];
 
     if (finalResponse.length === 0) {
-      res.status(404).send("Drivers not founded");
+      res.status(404).send("Drivers not found");
     } else {
       res.status(200).json(finalResponse);
     }
   } catch (error) {
-    res.status(500).send("Hubo un error");
+    res.status(500).send(error);
   }
 }
 

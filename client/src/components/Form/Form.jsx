@@ -139,7 +139,6 @@ function Form() {
         {errors.dob && <p className={style.error}>{errors.dob}</p>}
 
         <label htmlFor="teamIds">Equipos</label>
-        {/* <input type="text" id="equipoteamIds" name="equipoteamIds" /> */}
         <div className={style.cheboxTeams}>
           {teams.map((team) => {
             return (
